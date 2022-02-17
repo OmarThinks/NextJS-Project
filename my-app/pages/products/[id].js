@@ -5,7 +5,7 @@
 export async function getStaticPaths({ params }) {
     // Call an external API endpoint to get posts
     
-    console.log("Params",params);
+    /*console.log("Params",params);
 
     const res = await fetch('https://cantiin.com/api/products')
     const products = await res.json()
@@ -14,10 +14,12 @@ export async function getStaticPaths({ params }) {
     const paths = products.results.map((product) => ({
       params: { id: product.id.toString() },
     }))
- //const paths = [];
+    */
+    
+    const paths = [];
     // We'll pre-render only these paths at build time.
     // { fallback: false } means other routes should 404.
-    return { paths, fallback: false }
+    return { paths, fallback: true }
   }
 
 
@@ -46,7 +48,7 @@ export async function getStaticProps({ params }) {
 
 
 function Product(props) {
-    //console.log(props)
+    console.log("Rendering")
     return (<div>
         <div>
         {JSON.stringify(props)}
