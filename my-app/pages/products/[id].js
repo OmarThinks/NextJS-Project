@@ -14,7 +14,7 @@ export async function getStaticPaths({ params }) {
     const paths = products.results.map((product) => ({
       params: { id: product.id.toString() },
     }))
-  
+ //const paths = [];
     // We'll pre-render only these paths at build time.
     // { fallback: false } means other routes should 404.
     return { paths, fallback: false }
@@ -47,7 +47,15 @@ export async function getStaticProps({ params }) {
 
 function Product(props) {
     //console.log(props)
-    return (<div>{JSON.stringify(props)}</div>);
+    return (<div>
+        <div>
+        {JSON.stringify(props)}
+        </div>
+    
+<br/>
+    <div><a href={"/products"}>Products</a></div>
+    
+    </div>);
   }
   
 export default Product
