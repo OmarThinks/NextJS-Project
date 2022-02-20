@@ -1,5 +1,5 @@
 import React from "react";
-
+import Layout from "../components/Layout";
 
 
 /*
@@ -77,17 +77,19 @@ import React from "react";
 
   function ProductsPage({ products }) {
     return (
-      <ul>
-      {products.map((product) => (
-        <li key={product.id}>
-            
-            <a href={`/products/${product.id}`}>
+      <Layout>
+        <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+              
+              <a href={`/products/${product.id}`}>
 
-            {product.name}
-            </a>
-            </li>
-      ))}
-    </ul>
+              {product.name}
+              </a>
+              </li>
+        ))}
+      </ul>
+    </Layout>
     )
   }
 
