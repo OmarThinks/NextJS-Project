@@ -30,7 +30,7 @@ import React from "react";
   }
 */
 
-
+/*
 
   export async function getServerSideProps(ctx) {
     // Call an external API endpoint to get posts
@@ -46,6 +46,31 @@ import React from "react";
       },
     }
   }
+
+*/
+
+
+
+
+  
+  export async function getStaticProps() {
+    // Call an external API endpoint to get posts
+    //const page = ctx.query.page || "1";
+    const page = "1";
+    const res = await fetch(`https://cantiin.com/api/products/?page=${page}`);
+    const products = await res.json()
+  
+    // By returning { props: { posts } }, the Blog component
+    // will receive `posts` as a prop at build time
+    return {
+      props: {
+        products:products.results,
+      },
+      revalidate: 10, // In seconds
+    }
+  }
+
+
 
 
 
