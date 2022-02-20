@@ -66,7 +66,7 @@ import React from "react";
       props: {
         products:products.results,
       },
-      revalidate: 10, // In seconds
+      revalidate: 20, // In seconds
     }
   }
 
