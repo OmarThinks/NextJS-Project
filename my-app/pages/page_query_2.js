@@ -7,12 +7,14 @@ const Page = () =>{
     // getting the page query parameter
     // Default value is equal to "1"
 
-    useEffect(async()=>{
-      const res = await fetch(`https://cantiin.com/api/products/?page=${page}`);
-      const products = await res.json();
-      setProducts(products.results);
-      // This code will be executed only once at begining of the loading of the page
-      // It will not be executed again unless you cahnge the page
+    useEffect(()=>{
+      (async()=>{
+        const res = await fetch(`https://cantiin.com/api/products/?page=${page}`);
+        const products = await res.json();
+        setProducts(products.results);
+        // This code will be executed only once at begining of the loading of the page
+        // It will not be executed again unless you cahnge the page
+      })()
     },[page]);
 
     return (
