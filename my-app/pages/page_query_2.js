@@ -1,22 +1,20 @@
-import React from "react";
+import {useState, useEffect} from "react";
+import { useRouter } from 'next/router'
 
+const Page = () =>{
+    const [products, setProducts] = useState([]);
+    const [page, setPage] =useState(useRouter().query.page || "1");
+    // getting the page query parameter
+    // Default value is equal to "1"
 
+    useEffect(async()=>{
+      const res = await fetch(`https://cantiin.com/api/products/?page=${page}`);
+      const products = await res.json();
+      setProducts(products.results);
+      // This code will be executed only once at begining of the loading of the page
+      // It will not be executed again unless you cahnge the page
+    },[page]);
 
-export async function getServerSideProps(context) {
-    const page = context.query.page || "1";
-    // Here we got the "page" query parameter from Context
-    // Default value is "1"
-  
-    const res = await fetch(`https://cantiin.com/api/products/?page=${page}`);
-    const products = await res.json();
-    return {
-      props: {products: products.results}, // will be passed to the page component as props
-    }
-  }
-
-
-const Page = (props) =>{
-    const products = props.products;
     return (
       <ul>
         {products.map((product) => (
@@ -25,6 +23,5 @@ const Page = (props) =>{
       </ul>
       );
 }
-
 
 export default Page
