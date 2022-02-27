@@ -9,8 +9,9 @@ export async function getServerSideProps(context) {
   
     const res = await fetch(`https://cantiin.com/api/products/?page=${page}`);
     const products = await res.json();
+    console.log(process.env.DB_HOST);
     return {
-      props: {products: products.results}, // will be passed to the page component as props
+      props: {products: products.results, host: process.env.DB_HOST}, // will be passed to the page component as props
     }
   }
 
@@ -18,11 +19,15 @@ export async function getServerSideProps(context) {
 const Page = (props) =>{
     const products = props.products;
     return (
+      <div>
+        <div>{props.host}</div>
       <ul>
+        
         {products.map((product) => (
             <li key={product.id}>{product.name}</li>
         ))}
       </ul>
+      </div>
       );
 }
 
